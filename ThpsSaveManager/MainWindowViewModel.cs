@@ -38,7 +38,7 @@ namespace ThpsSaveManager
                     SaveUtilities.ToggleSaving(!value);
 
                 SetProperty(ref _disableSaving, value);
-                Settings.AddUpdate("DisableSaving", value.ToString());
+                //Settings.AddUpdate("DisableSaving", value.ToString());
             }
         }
 

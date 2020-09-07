@@ -44,6 +44,9 @@
     <Reference Include="AdonisUI.ClassicTheme, Version=1.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AdonisUI.ClassicTheme.1.16.0\lib\net45\AdonisUI.ClassicTheme.dll</HintPath>
     </Reference>
+    <Reference Include="AutoUpdater.NET, Version=1.6.2.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autoupdater.NET.Official.1.6.2\lib\net45\AutoUpdater.NET.dll</HintPath>
+    </Reference>
     <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
       <HintPath>..\packages\Ookii.Dialogs.Wpf.1.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
     </Reference>
@@ -53,6 +56,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -89,7 +93,7 @@
       <DependentUpon>SaveListElement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Save\SaveListViewModel.cs" />
-    <Compile Include="Save\SaveViewModel.cs" />
+    <Compile Include="Save\SaveListElementViewModel.cs" />
     <Compile Include="Common\Settings.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Page Include="Controls\ConfirmationDialog.xaml">

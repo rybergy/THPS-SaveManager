@@ -8,9 +8,9 @@ namespace ThpsSaveManager
 {
     public class SaveEventArgs
     {
-        public SaveViewModel Save { get; }
+        public SaveListElementViewModel Save { get; }
 
-        public SaveEventArgs(SaveViewModel save)
+        public SaveEventArgs(SaveListElementViewModel save)
         {
             Save = save;
         }

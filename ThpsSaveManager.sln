@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThpsSaveManager", "ThpsSaveManager\ThpsSaveManager.csproj", "{75079084-F19E-4302-8BA6-9CED069DB1B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1564A6D8-E3C8-4359-A3A3-8D9FBE5381A1}"
+	ProjectSection(SolutionItems) = preProject
+		version.xml = version.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

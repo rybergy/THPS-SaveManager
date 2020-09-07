@@ -9,23 +9,26 @@ namespace ThpsSaveManager
 {
     public class SaveListViewModel : ViewModelBase
     {
-        public ObservableCollection<SaveViewModel> Saves { get; set; } = new ObservableCollection<SaveViewModel>();
+        public ObservableCollection<SaveListElementViewModel> Saves { get; set; } = new ObservableCollection<SaveListElementViewModel>();
 
         public SaveListViewModel()
         {
             foreach (var saveName in SaveUtilities.LocalSaveFiles())
             {
+                Console.WriteLine($"Creating save with name {saveName}");
                 CreateNew(saveName);
             }
         }
 
-        public void CreateNew(string saveName)
+        public SaveListElementViewModel CreateNew(string saveName)
         {
-            var save = new SaveViewModel(saveName);
+            var save = new SaveListElementViewModel(saveName);
             save.Cloned += CloneSave;
             save.Deleted += DeleteSave;
 
             Saves.Add(save);
+
+            return save;
         }
 
         private string CloneName(string saveName)

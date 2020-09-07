@@ -20,11 +20,11 @@ namespace ThpsSaveManager
     /// </summary>
     public partial class SaveListElement : UserControl
     {
-        private SaveViewModel ViewModel
+        private SaveListElementViewModel ViewModel
         {
             get
             {
-                return (SaveViewModel)DataContext;
+                return (SaveListElementViewModel)DataContext;
             }
         }
 

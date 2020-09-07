@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using AutoUpdaterDotNET;
 
 namespace ThpsSaveManager
 {
@@ -13,8 +14,12 @@ namespace ThpsSaveManager
     /// </summary>
     public partial class App : Application
     {
+        private const string UpdateXmlUrl = "https://github.com/rybergy/THPS-SaveManager/releases/latest/download/version.xml";
+
         public App()
         {
+            AutoUpdater.Start(UpdateXmlUrl);
+
             SaveUtilities.Initialize();
         }
     }

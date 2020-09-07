@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace ThpsSaveManager
 {
@@ -35,9 +36,46 @@ namespace ThpsSaveManager
             }
         }
 
+        private static string LocalConfigFolder
+        {
+            get
+            {
+                return "./Config/";
+            }
+        }
+
         private static string LocalSavePath(string saveName)
         {
             return $"./{LocalSaveFolder}/{saveName}.zip";
+        }
+
+        private static string LocalConfigPath(string saveName)
+        {
+            return $"./{LocalConfigFolder}/{saveName}.xml";
+        }
+
+        #endregion
+
+        #region Save Config
+
+        public static void LoadConfig(SaveListElementViewModel save)
+        {
+            try
+            {
+                var config = XElement.Load(LocalConfigPath(save.Name));
+                save.FromXml(config);
+            }
+            catch (FileNotFoundException)
+            {
+                // We don't have a config, so make one
+                SaveConfig(save);
+            }
+        }
+
+        public static void SaveConfig(SaveListElementViewModel save)
+        {
+            var config = save.ToXml();
+            config.Save(LocalConfigPath(save.Name));
         }
 
         #endregion
@@ -54,6 +92,7 @@ namespace ThpsSaveManager
         {
             Events.StatusText("Initializing game folders...");
             Directory.CreateDirectory(LocalSaveFolder);
+            Directory.CreateDirectory(LocalConfigFolder);
             Directory.CreateDirectory(GameSavePath);
         }
 
@@ -64,13 +103,10 @@ namespace ThpsSaveManager
             Events.StatusText($"Saved into save file {saveName}.");
         }
 
-        public static void Load(string saveName)
+        public static void Load(string saveName, bool disableSaving)
         {
-            var savingDisabled = Convert.ToBoolean(Settings.Get("DisableSaving") ?? "false");
-
             // Re-enable saving so we can delete the directory
-            if (savingDisabled)
-                ToggleSaving(true);
+            ToggleSaving(true);
 
             Directory.Delete(GameSavePath, true);
             Directory.CreateDirectory(GameSavePath);
@@ -82,7 +118,7 @@ namespace ThpsSaveManager
             }
 
             // Since we re-made the directory we have to set the files as save/readonly again
-            ToggleSaving(!savingDisabled);
+            ToggleSaving(!disableSaving);
 
             Events.StatusText($"Loaded save file {saveName}.");
         }
@@ -90,18 +126,21 @@ namespace ThpsSaveManager
         public static void Delete(string saveName)
         {
             File.Delete(LocalSavePath(saveName));
+            File.Delete(LocalConfigPath(saveName));
             Events.StatusText($"Deleted save file {saveName}.");
         }
 
         public static void Clone(string saveName, string cloneName)
         {
             File.Copy(LocalSavePath(saveName), LocalSavePath(cloneName));
+            File.Copy(LocalConfigPath(saveName), LocalConfigPath(cloneName));
             Events.StatusText($"Cloned save file {saveName} into {cloneName}.");
         }
 
         public static void Rename(string oldName, string newName)
         {
             File.Move(LocalSavePath(oldName), LocalSavePath(newName));
+            File.Move(LocalConfigPath(oldName), LocalConfigPath(newName));
             Events.StatusText($"Renamed save file {oldName} to {newName}.");
         }
 
