@@ -6,7 +6,11 @@ Downloads are located in the [releases](https://github.com/rybergy/THPS-SaveMana
 
 ## Usage
 
-First, back up your game files (`%appdata%/Local/VicariousVisions/THPS/Saved/SaveGames/`) because safety :).
+If you prefer a tutorial video, you can find one here:
+
+[![THPS1+2 Save Manager Tutorial Video](https://img.youtube.com/vi/SZ67ms-VyQk/0.jpg)](https://www.youtube.com/watch?v=SZ67ms-VyQk)
+
+Otherwise, first, back up your game files (`%appdata%/Local/VicariousVisions/THPS/Saved/SaveGames/`) because safety :).
 Then, open up the save manager. 
 On the left you will see a list of save files, and on the right you will see game options.
 
