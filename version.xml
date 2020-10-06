@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <item>
-	<version>0.2.0.0</version>
+	<version>0.3.0.0</version>
 	<url>https://github.com/rybergy/THPS-SaveManager/releases/latest/download/ThpsSaveManager.zip</url>
 	<changelog>https://github.com/rybergy/THPS-SaveManager/releases/latest/</changelog>
 	<mandatory>false</mandatory>
