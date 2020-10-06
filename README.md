@@ -6,7 +6,11 @@ Downloads are located in the [releases](https://github.com/rybergy/THPS-SaveMana
 
 ## Usage
 
-First, back up your game files (`%appdata%/Local/VicariousVisions/THPS/Saved/SaveGames/`) because safety :).
+If you prefer a tutorial video, you can find one here:
+
+[![THPS1+2 Save Manager Tutorial Video](https://img.youtube.com/vi/SZ67ms-VyQk/0.jpg)](https://www.youtube.com/watch?v=SZ67ms-VyQk)
+
+Otherwise, first, back up your game files (`%appdata%/Local/VicariousVisions/THPS/Saved/SaveGames/`) because safety :).
 Then, open up the save manager. 
 On the left you will see a list of save files, and on the right you will see game options.
 
@@ -24,11 +28,17 @@ If you have in-game progress you would like to keep, be sure to save it to one o
 Then, click the load button next to the name of the save file you want to load. 
 Open up THPS1+2 and it should have successfully loaded.
 
+*NOTE: you may have to right click THPS1+2 -> uncheck "Enable Cloud Saves" on the Epic Games Launcher.*
+
+### Disabling Auto-Save
+
+If you would like to disable auto-save on specific save files, click the disable auto-save button (the one with the icon of the person running). 
+This is helpful for full-game speedruns where saving is not preferred.
+
 ### Other Functions
 
 There are a few more buttons next to each save file - namely rename, clone, and delete. These should be self-explanatory.
 
 ## Game Options
 
-* **Disable saving** - Sets the SaveGames folder and all of its contents to read-only mode so the game cannot write to it. Useful for full-game speedruns.
 * **Disable intro videos** (*requires game folder to be set*) - Changes the name of all intro videos so the game does not play them upon launch.
