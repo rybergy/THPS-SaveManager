@@ -44,14 +44,28 @@ namespace ThpsSaveManager
             }
         }
 
+        private static string LocalBackupFolder
+        {
+            get
+            {
+                return "./Backup/";
+            }
+        }
+
         private static string LocalSavePath(string saveName)
         {
-            return $"./{LocalSaveFolder}/{saveName}.zip";
+            return $"{LocalSaveFolder}/{saveName}.zip";
         }
 
         private static string LocalConfigPath(string saveName)
         {
-            return $"./{LocalConfigFolder}/{saveName}.xml";
+            return $"{LocalConfigFolder}/{saveName}.xml";
+        }
+
+        private static string LocalBackupPath(string loadedFileName)
+        {
+            var dateString = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+            return $"{LocalBackupFolder}/Save before loading {loadedFileName} at {dateString}.zip";
         }
 
         #endregion
@@ -93,6 +107,7 @@ namespace ThpsSaveManager
             Events.StatusText("Initializing game folders...");
             Directory.CreateDirectory(LocalSaveFolder);
             Directory.CreateDirectory(LocalConfigFolder);
+            Directory.CreateDirectory(LocalBackupFolder);
             Directory.CreateDirectory(GameSavePath);
         }
 
@@ -103,8 +118,35 @@ namespace ThpsSaveManager
             Events.StatusText($"Saved into save file {saveName}.");
         }
 
+        private const int NumBackups = 5;
+
+        public static void CleanBackups()
+        {
+            var directory = new DirectoryInfo(LocalBackupFolder);
+            var files = directory.GetFiles();
+
+            // Sort all files by last edit date
+            var sortedFiles = from file in files
+                              orderby file.LastWriteTime
+                              select file;
+
+            // Delete the first (N - numBackups) so we now have numBackups files
+            for (int i = 0; i < files.Length - NumBackups; i++)
+            {
+                File.Delete(files[i].FullName);
+            }
+        }
+
+        public static void Backup(string loadedFileName)
+        {
+            ZipFile.CreateFromDirectory(GameSavePath, LocalBackupPath(loadedFileName));
+            CleanBackups();
+        }
+
         public static void Load(string saveName, bool disableSaving)
         {
+            Backup(saveName);
+
             // Re-enable saving so we can delete the directory
             ToggleSaving(true);
 
